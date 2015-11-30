@@ -2,15 +2,14 @@
 var mysql = require('../config/db').pool;
 var nodemailer = require('nodemailer');
 
-function getDate(val) {
-    var d = new Date(val);
+function getDate() {
+    var d = new Date();
     var dt = d.getDate();
     var month = d.getMonth() + 1;
     var year = d.getFullYear();
-    var selectdate = Pad("0", dt, 2) + '/' + Pad("0", month, 2) + '/' + year;
+    var selectdate = year + '-' + Pad("0", month, 2) + '-' + Pad("0", dt, 2);
     return selectdate;
 }
-
 function getTime(val) {
     var d = new Date(val);
     var minite = d.getMinutes();

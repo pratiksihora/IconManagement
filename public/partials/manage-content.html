@@ -1,0 +1,100 @@
+<div class="container">
+    <div class="content">
+        <div class="content-container">
+            <div class="content-header">
+                <h2 class="content-header-title">{{PageTitle}} Content</h2>
+            </div>
+            <!-- /.content-header -->
+            <span class="col-sm-offset-3 col-sm-9" data-ng-show="errorvisible" style="color: red;">{{error}}
+            </span>
+            <span class="col-sm-offset-3 col-sm-9" data-ng-show="successvisible" style="color: green;">{{success}}
+            </span>
+            <form method="post" class="form-horizontal" role="form" name="manageContentForm" data-ng-submit="submitForm(manageContentForm.$valid)" novalidate>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="selectparenttype" class="col-sm-3 control-label"><span class="asterisk">*</span>Select Parent Content Type</label>
+                            <div class="col-sm-9">
+                                <span class="ui-select">
+                                    <select name="selectparenttype" ng-disabled="CurrentPage === 'edit-content'" class="form-control" data-ng-model="SelectedParentContentType" data-ng-change="SelectParentContentTypeChange()" data-ng-options="item.cd_id as item.cd_name for item in ParentContentType" required>
+                                        <option value="">-- Select Parent ContentType--</option>
+                                    </select>
+                                    <span style="color: red" ng-show="manageContentForm.$submitted || manageContentForm.selectparenttype.$dirty">
+                                        <span ng-show="manageContentForm.selectparenttype.$error.required">Please Select the Parent Content Type</span>
+                                    </span>
+                                </span>
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><span class="asterisk">*</span>New Content Type:</label>
+                            <div class="col-sm-9">
+                                <input ng-ena="CurrentPage === 'edit-content'" type="text" name="newcontenttype" class="form-control" placeholder="Content Name" data-ng-model="NewContentType" required>
+                                <span style="color: red" ng-show="manageContentForm.$submitted || manageContentForm.newcontenttype.$dirty">
+                                    <span ng-show="manageContentForm.newcontenttype.$error.required">New Content Type is required. </span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="deliverytype" class="col-sm-3 control-label"><span class="asterisk">*</span>Delivery Type</label>
+                            <div class="col-sm-9">
+                                <span class="ui-select">
+
+                                    <select name="selectdeliverytype" size="2" class="form-control" multiple data-ng-model="SelectedDeliveryType" data-ng-options="item.cd_id as item.cd_name for item in DeliveryType" required>
+                                        <!--<option value="">-- Select Geo Location --</option>-->
+                                    </select>
+                                    <span style="color: red" ng-show="manageContentForm.$submitted || manageContentForm.selectdeliverytype.$dirty">
+                                        <span ng-show="manageContentForm.selectdeliverytype.$error.required">Please Select Delivery Type.</span>
+                                    </span>
+                                </span>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-5 col-sm-7">
+                                <a href="/#/manage-content" data-ng-hide="IsAddContent"> <button class="btn btn-primary btn-w-md" title="back">Back To Manage-Content</button></a>
+                                <button type="submit" class="btn btn-primary btn-w-md" title="Save">Submit</button>
+                                <button type="reset" data-ng-show="IsAddContent" class="btn btn-default btn-w-md" title="Reset" data-ng-click="resetForm()">Reset</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6" data-ng-show="IsAddContent">
+                        <div class="form-group table-responsive">
+                            <table id="eventOperators" class="table table-striped table-bordered table-checkable">
+                                <thead>
+                                <tr>
+                                    <th>Sr no.</th>
+                                    <th>Parent Content Type</th>
+                                    <th>Content Type</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody data-ng-repeat="i in ContentTypes track by $index">
+                                <tr>
+                                    <td>{{$index + 1}}</td>
+                                    <td>{{i.parentname}}</td>
+                                    <td>{{i.contentname}}</td>
+                                    <td>
+                                        <a href="#edit-content/{{i.mct_id}}"><i title="Edit" class="fa fa-edit"></i></a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                                    <!--<div class="row">
+                                                            <div class="col-xs-12">
+                                                                <div class="col-sm-offset-5 col-sm-7">
+                                                                    <a href="/#/manage-content" data-ng-hide="IsAddContent"> <button class="btn btn-primary btn-w-md" title="back">Back To Manage-Content</button></a>
+                                                                    <button type="submit" class="btn btn-primary btn-w-md" title="Save">Submit</button>
+                                                                    <button type="reset" data-ng-show="IsAddContent" class="btn btn-default btn-w-md" title="Reset" data-ng-click="resetForm()">Reset</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>-->
+            </form>
+        </div>
+    </div>
+</div>

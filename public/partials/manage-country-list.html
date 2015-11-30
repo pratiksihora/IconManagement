@@ -1,0 +1,120 @@
+<div class="container">
+    <div class="content">
+        <div class="content-container">
+            <div class="content-header">
+                <h2 class="content-header-title">Manage Country List</h2>
+            </div>
+            <span class="col-sm-offset-3 col-sm-9" data-ng-show="errorvisible" style="color: red;">{{error}}
+            </span>
+            <span class="col-sm-offset-3 col-sm-9" data-ng-show="successvisible" style="color: green;">{{success}}
+            </span>
+            <form method="post" class="form-horizontal" role="form" name="manageCountryList" data-ng-submit="SubmitForm(manageCountryList.$valid)" novalidate>
+                <div class="row" class="col-md-12">
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label for="selectcountry" class="col-sm-3 control-label">Global Country List</label>
+                            <div class="col-sm-9">
+                                <span class="ui-select">
+                                    <select name="selectcountry" class="form-control" multiple data-ng-model="selectedCountries" data-ng-options="country.cd_name as country.cd_name for country in CountryList">
+                                    </select>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="form-group">
+                            <div class="col-sm-9">
+                                <input type="button" class="btn btn-primary" data-ng-click="add_countries()" value=">>" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label for="selectedcountries" class=" col-sm-3 control-label">Icon Supported Country List :  </label>
+                            <div class="col-sm-9">
+                                <span class="ui-select">
+                                    <select name="selectedcountries" class="form-control" data-ng-model="toRemove" data-ng-options="country.cd_name as country.cd_name for country in ManagedCountrys" multiple>
+                                    </select>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portlet">
+                    <div class="portlet-header">
+                        <h3><i class="fa fa-tasks"></i>Manage Country Groups</h3>
+                    </div>
+                    <!-- /.portlet-header -->
+                    <div class="portlet-content">
+                        <div class="row">
+                            <div class="row">
+                                <label for="selectgroups" class="col-sm-4 control-label">Select Group:</label>
+                                <div class="col-md-3">
+
+                                    <span class="ui-select">
+                                        <select name="selectgroups" class="form-control" data-ng-model="SelectedGroup" data-ng-options="item.cd_name as item.cd_name for item in AllGroups" data-ng-change="SelectGroupChange()">
+                                            <option value="">--Select Group--</option>
+                                        </select>
+                                    </span>
+
+                                </div>
+                                <div class="col-md-3">
+
+                                    <input type="text" name="groupname" class="form-control" placeholder="Group Name" data-ng-model="NewGroupName" data-ng-show="addgroupvisible">
+                                    <span style="color: red" data-ng-show="manageContentForm.$submitted || manageContentForm.groupname.$touched">
+                                        <span data-ng-show="manageContentForm.groupname.$error.required">
+                                            Group Name is required.
+                                        </span>
+                                    </span>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" class="col-md-12" data-ng-show="groupcountryvisible">
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label for="selectcountry_for_group" class="col-sm-3 control-label">Countries</label>
+                                    <div class="col-sm-9">
+                                        <span class="ui-select">
+                                            <select name="selectcountry_for_group" class="form-control" multiple data-ng-model="SelectedPendingCountry" data-ng-options="country.cd_name as country.cd_name for country in GroupPendingCountry">
+                                            </select>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                    <div class="col-sm-9">
+                                        <input type="button" class="btn btn-primary" data-ng-click="left_countries()" value=">>" />
+                                        <input type="button" class="btn btn-primary" data-ng-click="right_countries()" value="<<" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label for="selectedcountries" class=" col-sm-3 control-label">Selected :  </label>
+                                    <div class="col-sm-9">
+                                        <span class="ui-select">
+                                            <select name="selectedcountries" class="form-control" data-ng-model="SelectedGroupCountry" data-ng-options="country.cd_id as country.cd_name for country in GroupCountry" multiple>
+                                            </select>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Manage Groups -->
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="col-sm-offset-5 col-sm-7" data-ng-if="IsDisable != true">
+                            <button type="submit" class="btn btn-primary btn-w-md" title="Save">Submit</button>
+                            <button type="reset" class="btn btn-default btn-w-md" title="Reset" data-ng-click="resetform()">Reset</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div> <!-- Content container -->
+    </div>
+</div>

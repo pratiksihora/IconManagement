@@ -1,0 +1,134 @@
+<div class="container">
+    <div class="content">
+        <div class="content-container">
+            <div class="content-header">
+                <h2 class="content-header-title">Assign Rights</h2>
+            </div>
+            <!-- /.content-header -->
+            <form class="form-horizontal" role="form" name="valuePackForm" data-ng-submit="submitForm(valuePackForm.$valid)" novalidate>
+                <div class="row">
+                    <div class="col-md-6">
+                        <span class="col-sm-offset-3 col-sm-9" data-ng-show="errorvisible" style="color: red;">{{error}}
+                        </span>
+                        <span class="col-sm-offset-3 col-sm-9" data-ng-show="successvisible" style="color: green;">{{success}}
+                        </span>
+                        <div class="form-group">
+                            <label for="selectstore" class="col-sm-3 control-label"><span class="asterisk">*</span>Select Store</label>
+                            <div class="col-sm-9">
+                                <span class="ui-select">
+                                    <select name="selectstore" class="form-control" data-ng-model="SelectedStore" data-ng-options="item.st_id as item.st_name for item in Stores" data-ng-change="storeChange()" required>
+                                        <option value="">-- Select Store --</option>
+                                    </select>
+                                    <span style="color: red" data-ng-show="valuePackForm.$submitted || valuePackForm.selectstore.$dirty">
+                                        <span data-ng-show="valuePackForm.selectstore.$error.required">Please Select Store.</span>
+                                    </span>
+                                </span>
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="selectgeolocation" class="col-sm-3 control-label"><span class="asterisk">*</span>Select Geo Location</label>
+                            <div class="col-sm-9">
+                                <span class="ui-select">
+                                    <select name="selectgeolocation" class="form-control" multiple data-ng-model="SelectedGeoLocation" data-ng-options="item.cd_id as item.cd_name for item in Countrys" data-ng-change="countryChange()" required>
+                                        <!--<option value="">-- Select Geo Location --</option>-->
+                                    </select>
+                                    <span style="color: red" data-ng-show="valuePackForm.$submitted || valuePackForm.selectgeolocation.$dirty">
+                                        <span data-ng-show="valuePackForm.selectgeolocation.$error.required">Please Select Geo Location.</span>
+                                    </span>
+                                </span>
+                                <!--<br /><a href="#manage-country-list">Click here to add new Country</a>-->
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="selectpaymenttype" class="col-sm-3 control-label"><span class="asterisk">*</span>Select Payment Type</label>
+                            <div class="col-sm-9">
+                                <span class="ui-select">
+                                    <select name="selectpaymenttype" class="form-control" multiple data-ng-model="SelectedPaymentType" data-ng-options="item.en_id as item.en_display_name for item in PaymentTypes" required>
+                                        <!--<option value="">-- Select Payment Type --</option>-->
+                                    </select>
+                                    <span style="color: red" data-ng-show="valuePackForm.$submitted || valuePackForm.selectpaymenttype.$dirty">
+                                        <span data-ng-show="valuePackForm.selectpaymenttype.$error.required">Please Select Payment Type.</span>
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="selectpaymentchannel" class="col-sm-3 control-label"><span class="asterisk">*</span>Select Payment Channel</label>
+                            <div class="col-sm-9">
+                                <span class="ui-select">
+                                    <select name="selectpaymentchannel" class="form-control" multiple data-ng-model="SelectedPaymentChannel" data-ng-options="item.partner_id as item.partner_payment_name for item in PaymentChannels" required>
+                                        <!--<option value="">-- Select Payment Channel --</option>-->
+                                    </select>
+                                    <span style="color: red" data-ng-show="valuePackForm.$submitted || valuePackForm.selectpaymentchannel.$dirty">
+                                        <span data-ng-show="valuePackForm.selectpaymentchannel.$error.required">Please Select Payment Channel.</span>
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                                                    <!--<div class="form-group">
+                                                        <label for="Pricepointdet" class="col-sm-3 control-label"><span class="asterisk">*</span>Price Point Details Submit URL</label>
+                                                        <div class="col-sm-9">
+                                                            <input type="text" name="Pricepointdet" class="form-control" required placeholder="Price Point Details Submit URL" data-ng-model="PricePointDetail">
+                                                            <span style="color: red" data-ng-show="valuePackForm.$submitted || valuePackForm.Pricepointdet.$dirty">
+                                                                <span data-ng-show="valuePackForm.Pricepointdet.$error.required">Please Enter Price Point Details Submit URL.</span>
+                                                            </span>
+                                                        </div>
+                                                    </div>-->
+                    </div>
+                    <div class="col-md-6">
+                        <div class="portlet">
+                            <div class="portlet-header">
+                                <h3><i class="fa fa-tasks"></i>Assign Content</h3>
+                            </div>
+                            <!-- /.portlet-header -->
+                            <div class="portlet-content">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="form-group">
+                                            <label for="selectvendors" class="col-sm-6 control-label"><span class="asterisk">*</span>Select Vendors</label>
+                                            <div class="col-sm-6">
+                                                <select name="selectvendors" class="form-control" data-ng-model="SelectedVendor" multiple data-ng-options="item.vd_id as item.vd_name for item in Vendors" required>
+                                                    <!--<option value="">-- Select Vendors --</option>-->
+                                                </select>
+                                                <span style="color: red" data-ng-show="valuePackForm.$submitted || valuePackForm.selectvendors.$dirty">
+                                                    <span data-ng-show="valuePackForm.selectvendors.$error.required">Please Select Vendors.</span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="selectcontenttype" class="col-sm-6 control-label"><span class="asterisk">*</span>Select Content Type</label>
+                                            <div class="col-sm-6">
+                                                <select name="selectcontenttype" class="form-control" data-ng-model="SelectContentType" multiple data-ng-options="item.contentid as item.contentname for item in ContentTypes" required>
+                                                    <!--<option value="">-- Select Content Type --</option>-->
+                                                </select>
+                                                <span style="color: red" data-ng-show="valuePackForm.$submitted || valuePackForm.selectcontenttype.$dirty">
+                                                    <span data-ng-show="valuePackForm.selectcontenttype.$error.required">Please Select Content Type.</span>
+                                                </span><br />
+                                                <!--<a href="#manage-content">Click here to add new Content Type</a>-->
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!-- /.row -->
+                            </div>
+                            <!-- /.portlet-content -->
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="col-sm-offset-5 col-sm-7">
+                            <button type="submit" class="btn btn-primary btn-w-md" title="Save">Submit</button>
+                            <button type="reset" class="btn btn-default btn-w-md" title="Reset" data-ng-click="resetForm()">Reset</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
